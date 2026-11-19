@@ -8,59 +8,25 @@ use Illuminate\Auth\Access\Response;
 
 class BusinessPolicy
 {
-    /**
-     * Determine whether the user can view any models.
-     */
-    public function viewAny(User $user): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can view the model.
-     */
     public function view(User $user, Business $business): bool
     {
-        return false;
+        return $user->hasAccess('platform.businesses') || $this->owns($user, $business);
     }
 
-    /**
-     * Determine whether the user can create models.
-     */
-    public function create(User $user): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     */
     public function update(User $user, Business $business): bool
     {
-        return false;
+        return $this->view($user, $business);
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     */
     public function delete(User $user, Business $business): bool
     {
-        return false;
+        return $user->hasAccess('platform.businesses');   // hanya Administrator
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Business $business): bool
+    private function owns(User $user, Business $business): bool
     {
-        return false;
-    }
+        $memberId = $user->member?->id;
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Business $business): bool
-    {
-        return false;
+        return $memberId !== null && (int) $business->member_id === (int) $memberId;
     }
 }
