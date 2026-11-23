@@ -6,8 +6,8 @@
 
             {{-- Application Branding Header --}}
             <div class="text-center mb-4">
-                <div class="d-inline-flex align-items-center justify-content-center p-3 bg-primary bg-opacity-10 text-primary rounded-circle mb-3">
-                    <x-orchid-icon path="bs.shield-lock-fill" class="h1 mb-0" />
+                <div class="d-inline-flex align-items-center justify-content-center p-2 mb-3">
+                    <img src="{{ asset('images/logo-kpmi.png') }}" alt="Logo KPMI" style="width: 72px; height: 72px; object-fit: contain;">
                 </div>
                 <h1 class="h3 fw-bold text-dark mb-1">{{ config('app.name', 'Laravel') }}</h1>
                 <p class="text-muted small mb-0">{{ __('Sign in to access your dashboard') }}</p>
