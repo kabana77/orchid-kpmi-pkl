@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-md kp-nav">
     <div class="container">
-        <a class="navbar-brand kp-brand" href="{{ route('public.home') }}">
-            <span class="kp-mk" aria-hidden="true">K</span>KPMI Pekalongan
+        <a class="navbar-brand kp-brand d-flex align-items-center" href="{{ route('public.home') }}">
+            <img src="{{ asset('images/logo-kpmi.png') }}" alt="Logo KPMI" style="height: 40px; width: auto; margin-right: 10px;">
+            <span>KPMI Pekalongan</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#kpNav"
