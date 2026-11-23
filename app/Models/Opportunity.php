@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasPublicOpportunity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,7 +13,7 @@ use Orchid\Screen\AsSource;
 
 class Opportunity extends Model
 {
-    use SoftDeletes, Filterable, AsSource;
+    use SoftDeletes, Filterable, AsSource, HasPublicOpportunity;
 
     public const NEED = 'need';
     public const OFFER = 'offer';

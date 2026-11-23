@@ -1,0 +1,13 @@
+<?php
+
+use App\Http\Controllers\Site\MemberController;
+use Illuminate\Support\Facades\Route;
+
+Route::name('public.')->group(function () {
+    // Sementara: beranda diarahkan ke direktori anggota sampai HomeController dibuat (Tahap 5).
+    Route::redirect('/', '/anggota')->name('home');
+
+    Route::resource('anggota', MemberController::class)
+        ->only(['index'])
+        ->parameters(['anggota' => 'member']);
+});

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasPublicBusiness;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +11,7 @@ use Orchid\Filters\Filterable;
 
 class Business extends Model
 {
-    use AsSource, Filterable, HasFactory, SoftDeletes;
+    use AsSource, Filterable, HasFactory, HasPublicBusiness, SoftDeletes;
 
     public const AKTIF = 'aktif';
     public const NONAKTIF = 'nonaktif';

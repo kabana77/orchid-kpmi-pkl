@@ -9,10 +9,11 @@ use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Screen\AsSource;
+use App\Models\Concerns\HasPublicDirectory;
 
 class Member extends Model
 {
-    use AsSource, Filterable, HasFactory, SoftDeletes;
+    use AsSource, Filterable, HasFactory, SoftDeletes, HasPublicDirectory;
 
     protected $fillable = [
         'user_id', 'nama_lengkap', 'foto', 'nomor_wa', 'email', 'kota',
