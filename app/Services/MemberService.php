@@ -23,20 +23,15 @@ class MemberService
     {
         DB::transaction(function () use ($member) {
             if ($user = $member->user) {
-                $user->roles()->detach();          // cabut role (destruktif, restore harus manual)
-                $user->permissions = [];           // cabut permission langsung
-                $user->remember_token = Str::random(60); // matikan "ingat saya"
+                $user->roles()->detach();
+                $user->permissions = [];
+                $user->remember_token = Str::random(60);
                 $user->save();
 
-                // buang sesi aktif (jika SESSION_DRIVER=database)
-                try {
-                    DB::table('sessions')->where('user_id', $user->id)->delete();
-                } catch (\Exception $e) {
-                    // Abaikan jika tabel sessions tidak ada
-                }
+                DB::table('sessions')->where('user_id', $user->id)->delete();
             }
 
-            $member->delete(); // soft delete
+            $member->delete();
         });
     }
 
