@@ -96,7 +96,7 @@
             </section>
 
             <section class="kp-card d-flex flex-column gap-2" aria-labelledby="kontak">
-                @auth
+                @if(auth()->user()?->canSeeContacts())
                     <h2 id="kontak" class="h5 mb-1">Kontak</h2>
                     @if ($member->wa_url)
                         <a class="btn btn-kp" href="{{ $member->wa_url }}" target="_blank" rel="noopener noreferrer">
@@ -117,7 +117,7 @@
                     <h2 id="kontak" class="h5 mb-0">Kontak hanya untuk anggota</h2>
                     <p class="kp-mut small mb-2">Masuk untuk melihat nomor WhatsApp dan email {{ Str::of($member->nama_lengkap)->before(' ') }}.</p>
                     <a class="btn btn-kp" href="{{ route('platform.login') }}">Masuk</a>
-                @endauth
+                @endif
             </section>
         </aside>
     </div>

@@ -112,32 +112,30 @@
                 <a class="btn btn-kp-outline mt-1" href="{{ $profilUrl }}">Lihat profil</a>
             </section>
 
-            @if ($terbuka)
-                <section class="kp-card d-flex flex-column gap-2" aria-labelledby="kontak">
-                    @auth
-                        <h2 id="kontak" class="h5 mb-1">Hubungi pemasang</h2>
-                        @if ($member->wa_url)
-                            <a class="btn btn-kp" href="{{ $member->wa_url }}" target="_blank" rel="noopener noreferrer">
-                                WhatsApp {{ $member->nomor_wa }}
-                            </a>
-                        @endif
-                        @if ($member->email)
-                            <a href="mailto:{{ $member->email }}">{{ $member->email }}</a>
-                        @endif
-                        @if (! $member->wa_url && ! $member->email)
-                            <p class="kp-mut small mb-0">Pemasang belum mencantumkan kontak.</p>
-                        @endif
-                    @else
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#14213D" stroke-width="1.8"
-                             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>
-                        </svg>
-                        <h2 id="kontak" class="h5 mb-0">Kontak hanya untuk anggota</h2>
-                        <p class="kp-mut small mb-2">Masuk untuk menghubungi {{ Str::of($member->nama_lengkap)->before(' ') }} lewat WhatsApp atau email.</p>
-                        <a class="btn btn-kp" href="{{ route('platform.login') }}">Masuk</a>
-                    @endauth
-                </section>
-            @endif
+            <section class="kp-card d-flex flex-column gap-2" aria-labelledby="kontak">
+                @if(auth()->user()?->canSeeContacts())
+                    <h2 id="kontak" class="h5 mb-1">Hubungi pemasang</h2>
+                    @if ($member->wa_url)
+                        <a class="btn btn-kp" href="{{ $member->wa_url }}" target="_blank" rel="noopener noreferrer">
+                            WhatsApp {{ $member->nomor_wa }}
+                        </a>
+                    @endif
+                    @if ($member->email)
+                        <a href="mailto:{{ $member->email }}">{{ $member->email }}</a>
+                    @endif
+                    @if (! $member->wa_url && ! $member->email)
+                        <p class="kp-mut small mb-0">Pemasang belum mencantumkan kontak.</p>
+                    @endif
+                @else
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#14213D" stroke-width="1.8"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>
+                    </svg>
+                    <h2 id="kontak" class="h5 mb-0">Kontak hanya untuk anggota</h2>
+                    <p class="kp-mut small mb-2">Masuk untuk menghubungi {{ Str::of($member->nama_lengkap)->before(' ') }} lewat WhatsApp atau email.</p>
+                    <a class="btn btn-kp" href="{{ route('platform.login') }}">Masuk</a>
+                @endif
+            </section>
         </aside>
     </div>
 </div>
