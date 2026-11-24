@@ -71,4 +71,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Member::class);
     }
+
+    public function canSeeContacts(): bool
+    {
+        return $this->member()->exists();
+    }
 }
