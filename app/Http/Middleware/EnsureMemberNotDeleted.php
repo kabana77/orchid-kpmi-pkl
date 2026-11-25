@@ -9,19 +9,19 @@ use Illuminate\Support\Facades\Auth;
 
 class EnsureMemberNotDeleted
 {
-    public function handle(Request , Closure )
+    public function handle(Request $request, Closure $next)
     {
-         = ->user();
+        $user = $request->user();
 
-        if ( && Member::onlyTrashed()->where('user_id', ->id)->exists()) {
+        if ($user && Member::onlyTrashed()->where('user_id', $user->id)->exists()) {
             Auth::logout();
-            ->session()->invalidate();
-            ->session()->regenerateToken();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
             return redirect()->route('platform.login')
                 ->withErrors(['email' => 'Akun ini sudah dinonaktifkan. Hubungi pengurus.']);
         }
 
-        return ();
+        return $next($request);
     }
 }

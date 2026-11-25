@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6 d-flex flex-column gap-3">
-                <p class="kp-hero-kicker mb-0">Komunitas pelaku usaha dan profesional</p>
+                <p class="kp-hero-kicker mb-0">Wadah bagi para pelaku usaha dan profesional</p>
                 <h1 id="judul-beranda">Tumbuh bersama jejaring usaha dan profesional lokal</h1>
                 <p class="kp-hero-lead mb-0">Temukan rekan usaha, bangun kolaborasi, dan saling merekomendasikan klien di satu tempat.</p>
                 <div class="d-flex flex-wrap gap-2 mt-2">

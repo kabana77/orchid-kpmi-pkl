@@ -58,4 +58,14 @@ class Member extends Model
     {
         return $this->hasMany(Opportunity::class);
     }
+
+    public function referralsGiven()
+    {
+        return $this->hasMany(Referral::class, 'pemberi_referral_id');
+    }
+
+    public function referralsReceived()
+    {
+        return $this->hasMany(Referral::class, 'penerima_referral_id');
+    }
 }
